@@ -1,90 +1,123 @@
-# NgxPluginModules
+# ngx-plugin-modules
 
-This project was generated using [Nx](https://nx.dev).
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5ae923cb-3ac2-4c31-9c63-9e5274135f10/deploy-status)](https://app.netlify.com/sites/ngx-plugin-modules/deploys)
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
+## TODO - REWRITE README
 
-🔎 **Smart, Extensible Build Framework**
+## Purpose
 
-## Adding capabilities to your workspace
+The purpose of this repository is to present a POC of a plugin system, and provide a way for these modules to expose API in a unified way.
+PluginModules should be lazy-loadable. When lazy-loaded, they should be conditionally loaded (like `canLoad` with lazy loaded routes).
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+## Why not use the routing mechanism?
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+This is a POC which will hopefully, after refactoring and improving, be used in a certain app.  
+This app does not rely on routing, and basically has two routes: /login and /app.  
+The /app contains a big application, with a map, and a lot of map elements and floating forms.  
+Under certain circumstances, we don't want to load all feature modules -
 
-Below are our core plugins:
+- Different environments
+- A/B Testing
+- Etc
 
-- [React](https://reactjs.org)
-  - `npm install --save-dev @nrwl/react`
-- Web (no framework frontends)
-  - `npm install --save-dev @nrwl/web`
-- [Angular](https://angular.io)
-  - `npm install --save-dev @nrwl/angular`
-- [Nest](https://nestjs.com)
-  - `npm install --save-dev @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `npm install --save-dev @nrwl/express`
-- [Node](https://nodejs.org)
-  - `npm install --save-dev @nrwl/node`
+And so, I want to provide a way for modules to expose some api, that will be available to the app, if and once loaded.
 
-There are also many [community plugins](https://nx.dev/community) you could add.
+## Structure
 
-## Generate an application
+The main library is in `/projects/plugin-modules`.  
+It contains the entire plugin modules API, and exposes services which are needed to interact with, an plug into, the plugin module system.
 
-Run `nx g @nrwl/react:app my-app` to generate an application.
+The example plugin system is in `/projects/forms-registry`.  
+The purpose of the library is to save and expose a registry of components with certain attributes (e.g: each component has a category, code, etc.).
 
-> You can use any of the plugins above to generate applications as well.
+Each feature module can expose such components by using the `forms-registry` library.
 
-When using Nx, you can create multiple applications and libraries in the same workspace.
+## The Example Application
 
-## Generate a library
+The app component shows a simple menu with all the components from the registry.
+Clicking on a component name loads the component below the menu.
 
-Run `nx g @nrwl/react:lib my-lib` to generate a library.
+## Plugin System
 
-> You can also use any of the plugins above to generate libraries as well.
+Each plugin system can expose instances of the [PluginProcessor](projects/plugin-modules/src/lib/interfaces.ts#18) interface.
 
-Libraries are shareable across libraries and applications. They can be imported from `@ngx-plugin-modules/mylib`.
+```typescript
+// From library
+export interface PluginProcessor {
+  process(moduleRef: NgModuleRef<any>): void | Promise<void> | Observable<void>;
+}
 
-## Development server
+// Userland
+export class MyProcessor implements PluginProcessor { ... }
 
-Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+NgModule({
+  providers: [
+    providePluginProcessor(MyProcessor),
+  ],
+})
+class MyPluginSystemModule { ... }
+```
 
-## Code scaffolding
+Plugin systems can save whatever data they want on modules via providers.
 
-Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
+When a feature module is loaded and boostrapped, it is ran through the `PluginProcessorsService` which saves all `PluginProcessors` and activates them.
 
-## Build
+When the plugin system processor is activated, this is where you can collect the data saved on the module, and act accordingly.
 
-Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## The Example Plugin System: [Forms Registry](/projects/forms-registry)
 
-## Running unit tests
+The library exposes the `FormsRegistryService` which is the main public API for the plugin system:
 
-Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
+```typescript
+@Injectable()
+export class FormsRegistry {
+  formEntries$(): Observable<FormEntry[]>;
 
-Run `nx affected:test` to execute the unit tests affected by a change.
+  add<T = any>(
+    formEntry: FormEntry<T>,
+    componentFactory: ComponentFactory<T>
+  ): void;
 
-## Running end-to-end tests
+  resolveComponentFactory<T>(component: Type<T>): ComponentFactory<T> | null;
+}
+```
 
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
+The plugin system registers the `PluginProcessor` via a `forRoot` import:
 
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
+```typescript
+@NgModule({
+  imports: [
+    PluginsModule.forRoot([
+      {
+        loadChildren: () =>
+          import("./feature1/feature1.module").then(m => m.Feature1Module),
+        name: "feature1" // name provided for diagnostics
+      }
+    ]),
+    FormsRegistryModule.forRoot()
+  ]
+})
+export class AppModule {}
+```
 
-## Understand your workspace
+Feature Modules expose forms to the registry via a `forFeature` import:
 
-Run `nx dep-graph` to see a diagram of the dependencies of your projects.
+```typescript
+@NgModule({
+  declarations: [Feature1FormComponent],
+  imports: [
+    CommonModule,
+    FormsRegistryModule.forFeature([
+      {
+        category: "Category 1",
+        component: Feature1FormComponent,
+        name: "Feature1FormComponent"
+      }
+    ]), // expose api
+    PluginsModule.forFeature() // register as module that exposes api via plugins
+  ],
+})
+export class Feature1Module {}
+```
 
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev) to learn more.
-
-## ☁ Nx Cloud
-
-### Distributed Computation Caching & Distributed Task Execution
-
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
-
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
-
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
-
-Visit [Nx Cloud](https://nx.app/) to learn more.
+When the module is loaded, the [FormsRegistryProcessor](projects/forms-registry/src/lib/forms-registry-processor.service.ts) collects the forms provided in the feature module, and loads them into the registry with `FormRegistryService#add`.
