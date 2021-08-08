@@ -41,6 +41,125 @@
           }
         }
       }
+    },
+    "ngx-plugin-modules-demo": {
+      "projectType": "application",
+      "root": "apps/ngx-plugin-modules-demo",
+      "sourceRoot": "apps/ngx-plugin-modules-demo/src",
+      "prefix": "ngx-plugin-modules",
+      "targets": {
+        "build": {
+          "executor": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/ngx-plugin-modules-demo",
+            "index": "apps/ngx-plugin-modules-demo/src/index.html",
+            "main": "apps/ngx-plugin-modules-demo/src/main.ts",
+            "polyfills": "apps/ngx-plugin-modules-demo/src/polyfills.ts",
+            "tsConfig": "apps/ngx-plugin-modules-demo/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/ngx-plugin-modules-demo/src/favicon.ico",
+              "apps/ngx-plugin-modules-demo/src/assets"
+            ],
+            "styles": ["apps/ngx-plugin-modules-demo/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/ngx-plugin-modules-demo/src/environments/environment.ts",
+                  "with": "apps/ngx-plugin-modules-demo/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "executor": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "ngx-plugin-modules-demo:build:production"
+            },
+            "development": {
+              "browserTarget": "ngx-plugin-modules-demo:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "executor": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ngx-plugin-modules-demo:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/ngx-plugin-modules-demo/src/**/*.ts",
+              "apps/ngx-plugin-modules-demo/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/ngx-plugin-modules-demo"],
+          "options": {
+            "jestConfig": "apps/ngx-plugin-modules-demo/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-plugin-modules-demo-e2e": {
+      "root": "apps/ngx-plugin-modules-demo-e2e",
+      "sourceRoot": "apps/ngx-plugin-modules-demo-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/ngx-plugin-modules-demo-e2e/cypress.json",
+            "tsConfig": "apps/ngx-plugin-modules-demo-e2e/tsconfig.e2e.json",
+            "devServerTarget": "ngx-plugin-modules-demo:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ngx-plugin-modules-demo:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/ngx-plugin-modules-demo-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
     }
   },
   "cli": {
@@ -48,14 +167,19 @@
   },
   "generators": {
     "@nrwl/angular:application": {
+      "style": "scss",
       "linter": "eslint",
-      "unitTestRunner": "jest"
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
     },
     "@nrwl/angular:library": {
+      "style": "scss",
       "linter": "eslint",
       "unitTestRunner": "jest"
     },
-    "@nrwl/angular:component": {}
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
   },
   "defaultProject": "ngx-plugin-modules"
 }

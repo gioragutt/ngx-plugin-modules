@@ -29,6 +29,13 @@
   "projects": {
     "ngx-plugin-modules": {
       "tags": []
+    },
+    "ngx-plugin-modules-demo": {
+      "tags": []
+    },
+    "ngx-plugin-modules-demo-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ngx-plugin-modules-demo"]
     }
   }
 }
