@@ -1,12 +1,13 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {Feature3Module} from '@ngx-plugin-modules/demo/feature3';
 import {FloatingFormsModule} from '@ngx-plugin-modules/demo/floating-forms';
 import {FormsRegistryModule} from '@ngx-plugin-modules/demo/forms-registry';
 import {MaterialModule} from '@ngx-plugin-modules/demo/material';
+import {LazyPluginModules, PluginsModule} from 'ngx-plugin-modules';
 import {AppComponent} from './app.component';
 import {ShellComponent} from './shell/shell.component';
-import {Feature3Module} from '@ngx-plugin-modules/demo/feature3';
-import {LazyPluginModules, PluginsModule} from 'ngx-plugin-modules';
 
 export const features: LazyPluginModules = [
   {
@@ -23,6 +24,7 @@ export const features: LazyPluginModules = [
   declarations: [AppComponent, ShellComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsRegistryModule.forRoot(),
     FloatingFormsModule.forRoot(),
     PluginsModule.forRoot(features, {lazyLoadImmediately: false}),

@@ -9,6 +9,6 @@ export interface FormEntry<T = unknown> {
 export type FormEntries = FormEntry[];
 
 export interface FormEntryViewRef<T = unknown> {
-  viewRef: ViewRef;
+  viewRef?: ViewRef;
   formEntry: FormEntry<T>;
 }

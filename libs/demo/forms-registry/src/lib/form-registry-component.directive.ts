@@ -46,7 +46,8 @@ export class FormRegistryComponentDirective {
 
   attachViewRef({formEntry, viewRef}: FormEntryViewRef): void {
     this.container.clear();
-    this.container.insert(viewRef);
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    this.container.insert(viewRef!);
     this.currentEntry = formEntry;
   }
 

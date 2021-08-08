@@ -7,7 +7,6 @@ import {
   Output,
   QueryList,
   ViewChildren,
-  ViewRef,
 } from '@angular/core';
 import {
   FormEntry,
@@ -16,11 +15,6 @@ import {
 } from '@ngx-plugin-modules/demo/forms-registry';
 import {Observable} from 'rxjs';
 import {FloatingFormContainer, TabSplitEvent} from '../floating-form-container';
-
-export interface ComponentTab {
-  formEntry: FormEntry;
-  viewRef?: ViewRef;
-}
 
 @Component({
   selector: 'lib-floating-form-container',
@@ -47,7 +41,7 @@ export class FloatingFormContainerComponent
 
   focused = false;
   selected = 0;
-  componentTabs: ComponentTab[] = [];
+  componentTabs: FormEntryViewRef[] = [];
 
   constructor(private cdr: ChangeDetectorRef) {}
 
@@ -82,9 +76,7 @@ export class FloatingFormContainerComponent
 
   split(index: number): void {
     const tab = this.tabs.toArray()[index];
-    console.log(this.tabs.length);
     const formFromView = tab.detach();
-    console.log(this.tabs.length);
     const isLastTab = this.closeTab(index);
     this.splitTab.emit({formFromView, isLastTab});
     if (!isLastTab) {
@@ -101,7 +93,7 @@ export class FloatingFormContainerComponent
     this.addTab(event);
   }
 
-  private addTab(event: ComponentTab) {
+  private addTab(event: FormEntryViewRef) {
     this.componentTabs.push(event);
     this.selected = this.componentTabs.length - 1;
     this.cdr.detectChanges();

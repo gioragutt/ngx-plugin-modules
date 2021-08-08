@@ -1,1 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+@use '~@angular/material' as mat;
+@import '~@angular/cdk/overlay-prebuilt.css';
+
+@include mat.core();
+
+$lazy-loading-modules-primary: mat.define-palette(mat.$blue-palette);
+$lazy-loading-modules-accent: mat.define-palette(mat.$orange-palette, A200, A100, A400);
+
+$lazy-loading-modules-warn: mat.define-palette(mat.$red-palette);
+
+$lazy-loading-modules-theme: mat.define-light-theme(
+  $lazy-loading-modules-primary,
+  $lazy-loading-modules-accent,
+  $lazy-loading-modules-warn
+);
+
+@include mat.all-component-themes($lazy-loading-modules-theme);
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.floating-form-container {
+  .mat-tab-label,
+  .mat-tab-label-active {
+    min-width: 0;
+    padding: 10px;
+    margin: 10px;
+    height: 30px;
+  }
+}

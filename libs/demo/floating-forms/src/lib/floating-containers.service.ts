@@ -9,8 +9,6 @@ import {
 import {FormEntryViewRef} from '@ngx-plugin-modules/demo/forms-registry';
 import {BehaviorSubject} from 'rxjs';
 import {first, takeUntil} from 'rxjs/operators';
-// import {Logger} from '../logger/logger';
-// import {LoggerService} from '../logger/logger.service';
 import {FloatingFormContainer, TabSplitEvent} from './floating-form-container';
 import {FloatingFormContainerComponent} from './floating-form-container/floating-form-container.component';
 
@@ -20,21 +18,14 @@ export type FloatingContainerRef = ComponentRef<FloatingFormContainer>;
   providedIn: 'root',
 })
 export class FloatingContainersService {
-  // private readonly logger: Logger;
-  private readonly logger: Console;
   private boundingView!: ViewContainerRef;
   private renderer: Renderer2;
   private floatingContainers: FloatingContainerRef[] = [];
   private floatingContainersCount = new BehaviorSubject<number>(0);
   private focusedContainer: FloatingContainerRef | null = null;
 
-  constructor(
-    private resolver: ComponentFactoryResolver,
-    rendererFactory: RendererFactory2,
-    // loggerService: LoggerService,
-  ) {
+  constructor(private resolver: ComponentFactoryResolver, rendererFactory: RendererFactory2) {
     this.renderer = rendererFactory.createRenderer(null, null);
-    this.logger = console;
   }
 
   setBoundingView(boundingView: ViewContainerRef): void {
@@ -58,7 +49,7 @@ export class FloatingContainersService {
     this.floatingContainers.push(componentRef);
     this.updateContainersCount();
 
-    this.logger.debug(`Created new floating container(${componentRef.instance.id})`);
+    console.log(`Created new floating container(${componentRef.instance.id})`);
 
     return componentRef;
   }
@@ -87,15 +78,15 @@ export class FloatingContainersService {
 
   handleSplit({formFromView, isLastTab}: TabSplitEvent, splitFrom: FloatingContainerRef) {
     if (isLastTab) {
-      this.logger.debug(`Last tab of ${splitFrom.instance.id} split, disposing of container`);
+      console.log(`Last tab of ${splitFrom.instance.id} split, disposing of container`);
       this.disposeOfFloatingContainer(splitFrom);
     }
 
     if (this.floatingContainers.length === 0) {
-      this.logger.warn(
+      console.warn(
         'Split called with only tab when there was just one floating container! This is a bug!',
       );
-      formFromView.viewRef.destroy();
+      formFromView.viewRef?.destroy();
       return;
     }
 
@@ -112,7 +103,7 @@ export class FloatingContainersService {
     formFromView: FormEntryViewRef<unknown>,
   ) {
     const attachingTo = this.createFloatingContainer();
-    this.logger.debug(`Splitting from ${splitFrom.instance.id} to new(${attachingTo.instance.id})`);
+    console.log(`Splitting from ${splitFrom.instance.id} to new(${attachingTo.instance.id})`);
     attachingTo.instance.attach(formFromView);
     this.focusOn(attachingTo);
   }
@@ -124,13 +115,9 @@ export class FloatingContainersService {
     formFromView: FormEntryViewRef<unknown>,
   ) {
     if (isLastTab) {
-      this.logger.debug(
-        `Moving to ${moveTo.instance.id} after ${splitFrom.instance.id} was disposed of`,
-      );
+      console.log(`Moving to ${moveTo.instance.id} after ${splitFrom.instance.id} was disposed of`);
     } else {
-      this.logger.debug(
-        `Splitting from ${splitFrom.instance.id} to existing(${moveTo.instance.id})`,
-      );
+      console.log(`Splitting from ${splitFrom.instance.id} to existing(${moveTo.instance.id})`);
     }
 
     moveTo.instance.attach(formFromView);
@@ -147,9 +134,7 @@ export class FloatingContainersService {
       this.focusedContainer = null;
     }
     const index = this.floatingContainers.indexOf(floatingContainerRef);
-    this.logger.debug(
-      `Disposing of container ${floatingContainerRef.instance.id} from index ${index}`,
-    );
+    console.log(`Disposing of container ${floatingContainerRef.instance.id} from index ${index}`);
     floatingContainerRef.destroy();
     this.floatingContainers.splice(index, 1);
     this.updateContainersCount();

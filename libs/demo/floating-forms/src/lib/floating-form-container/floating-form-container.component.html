@@ -5,7 +5,7 @@
     <mat-tab *ngFor="let tab of componentTabs; let i=index">
       <ng-template mat-tab-label>
         <span>{{tab.formEntry.name}}</span>
-        <button mat-icon-button *ngIf="(openFloatingFormContainers$ | async) > 1 || componentTabs.length > 1"
+        <button mat-icon-button *ngIf="((openFloatingFormContainers$ | async) ?? 0) > 1 || componentTabs.length > 1"
           class="split-button" (click)="split(i)">
           <mat-icon>keyboard_tab</mat-icon>
         </button>
