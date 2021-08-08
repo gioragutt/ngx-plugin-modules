@@ -27,6 +27,21 @@
     ]
   },
   "projects": {
+    "demo-feature1": {
+      "tags": []
+    },
+    "demo-feature2": {
+      "tags": []
+    },
+    "demo-feature3": {
+      "tags": []
+    },
+    "demo-floating-forms": {
+      "tags": []
+    },
+    "demo-forms-registry": {
+      "tags": []
+    },
     "ngx-plugin-modules": {
       "tags": []
     },

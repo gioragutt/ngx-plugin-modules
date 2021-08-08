@@ -15,6 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@ngx-plugin-modules/demo/feature1": ["libs/demo/feature1/src/index.ts"],
+      "@ngx-plugin-modules/demo/feature2": ["libs/demo/feature2/src/index.ts"],
+      "@ngx-plugin-modules/demo/feature3": ["libs/demo/feature3/src/index.ts"],
+      "@ngx-plugin-modules/demo/floating-forms": ["libs/demo/floating-forms/src/index.ts"],
+      "@ngx-plugin-modules/demo/forms-registry": ["libs/demo/forms-registry/src/index.ts"],
       "ngx-plugin-modules": ["libs/ngx-plugin-modules/src/index.ts"]
     }
   },

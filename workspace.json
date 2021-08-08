@@ -1,6 +1,131 @@
 {
   "version": 2,
   "projects": {
+    "demo-feature1": {
+      "projectType": "library",
+      "root": "libs/demo/feature1",
+      "sourceRoot": "libs/demo/feature1/src",
+      "prefix": "ngx-plugin-modules",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/demo/feature1"],
+          "options": {
+            "jestConfig": "libs/demo/feature1/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/demo/feature1/src/**/*.ts",
+              "libs/demo/feature1/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "demo-feature2": {
+      "projectType": "library",
+      "root": "libs/demo/feature2",
+      "sourceRoot": "libs/demo/feature2/src",
+      "prefix": "ngx-plugin-modules",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/demo/feature2"],
+          "options": {
+            "jestConfig": "libs/demo/feature2/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/demo/feature2/src/**/*.ts",
+              "libs/demo/feature2/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "demo-feature3": {
+      "projectType": "library",
+      "root": "libs/demo/feature3",
+      "sourceRoot": "libs/demo/feature3/src",
+      "prefix": "ngx-plugin-modules",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/demo/feature3"],
+          "options": {
+            "jestConfig": "libs/demo/feature3/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/demo/feature3/src/**/*.ts",
+              "libs/demo/feature3/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "demo-floating-forms": {
+      "projectType": "library",
+      "root": "libs/demo/floating-forms",
+      "sourceRoot": "libs/demo/floating-forms/src",
+      "prefix": "ngx-plugin-modules",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/demo/floating-forms"],
+          "options": {
+            "jestConfig": "libs/demo/floating-forms/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/demo/floating-forms/src/**/*.ts",
+              "libs/demo/floating-forms/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "demo-forms-registry": {
+      "projectType": "library",
+      "root": "libs/demo/forms-registry",
+      "sourceRoot": "libs/demo/forms-registry/src",
+      "prefix": "ngx-plugin-modules",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/demo/forms-registry"],
+          "options": {
+            "jestConfig": "libs/demo/forms-registry/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/demo/forms-registry/src/**/*.ts",
+              "libs/demo/forms-registry/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "ngx-plugin-modules": {
       "projectType": "library",
       "root": "libs/ngx-plugin-modules",
