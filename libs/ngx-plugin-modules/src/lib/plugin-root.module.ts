@@ -1,10 +1,11 @@
-import { NgModule, NgModuleRef, Inject, Optional, InjectionToken } from '@angular/core';
-import { PluginModuleBootstrapperService } from './plugin-module-bootstrapper.service';
-import { PluginModuleLoaderService } from './plugin-module-loader.service';
-import { PluginModuleConfig } from './interfaces';
+import {NgModule, NgModuleRef, Inject, Optional, InjectionToken} from '@angular/core';
+import {PluginModuleBootstrapperService} from './plugin-module-bootstrapper.service';
+import {PluginModuleLoaderService} from './plugin-module-loader.service';
+import {PluginModuleConfig} from './interfaces';
 
-export const PLUGIN_ROOT_MODULE_CONFIG =
-  new InjectionToken<PluginModuleConfig>('PLUGIN_ROOT_MODULE_CONFIG');
+export const PLUGIN_ROOT_MODULE_CONFIG = new InjectionToken<PluginModuleConfig>(
+  'PLUGIN_ROOT_MODULE_CONFIG',
+);
 
 const DEFAULT_CONFIG: PluginModuleConfig = {
   boostrapImmediately: true,
@@ -21,7 +22,7 @@ export class PluginRootModule {
     private loader: PluginModuleLoaderService,
   ) {
     config = config || {};
-    this.config = { ...DEFAULT_CONFIG, ...config };
+    this.config = {...DEFAULT_CONFIG, ...config};
 
     this.lazyLoadIfNeeded();
   }

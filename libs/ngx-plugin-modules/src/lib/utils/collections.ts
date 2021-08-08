@@ -1,5 +1,5 @@
-import { ɵisObservable as isObservable, ɵisPromise as isPromise } from '@angular/core';
-import { from, Observable, of } from 'rxjs';
+import {ɵisObservable as isObservable, ɵisPromise as isPromise} from '@angular/core';
+import {from, Observable, of} from 'rxjs';
 
 export type MaybeAsync<T> = T | Promise<T> | Observable<T>;
 
@@ -17,4 +17,3 @@ export function wrapIntoObservable<T>(value: MaybeAsync<T>): Observable<T> {
 
   return of(value);
 }
-

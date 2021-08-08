@@ -1,7 +1,7 @@
-import { NgModuleRef, Type, InjectionToken } from '@angular/core';
-import { LoadChildrenCallback } from '@angular/router';
-import { Observable } from 'rxjs';
-import { MaybeAsync } from './utils/collections';
+import {NgModuleRef, Type, InjectionToken} from '@angular/core';
+import {LoadChildrenCallback} from '@angular/router';
+import {Observable} from 'rxjs';
+import {MaybeAsync} from './utils/collections';
 
 export interface PluginModuleConfig {
   lazyLoadImmediately?: boolean;
@@ -18,9 +18,7 @@ export interface LazyPluginModule {
 export type LazyPluginModules = LazyPluginModule[];
 
 export interface CanLoad {
-  canLoad(
-    module: LazyPluginModule
-  ): boolean | Promise<boolean> | Observable<boolean>;
+  canLoad(module: LazyPluginModule): boolean | Promise<boolean> | Observable<boolean>;
 }
 
 export interface PluginProcessor {

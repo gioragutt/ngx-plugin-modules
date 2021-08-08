@@ -5,7 +5,7 @@
       "projectType": "library",
       "root": "libs/demo/feature1",
       "sourceRoot": "libs/demo/feature1/src",
-      "prefix": "ngx-plugin-modules",
+      "prefix": "lib",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -30,7 +30,7 @@
       "projectType": "library",
       "root": "libs/demo/feature2",
       "sourceRoot": "libs/demo/feature2/src",
-      "prefix": "ngx-plugin-modules",
+      "prefix": "lib",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -55,7 +55,7 @@
       "projectType": "library",
       "root": "libs/demo/feature3",
       "sourceRoot": "libs/demo/feature3/src",
-      "prefix": "ngx-plugin-modules",
+      "prefix": "lib",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -80,7 +80,7 @@
       "projectType": "library",
       "root": "libs/demo/floating-forms",
       "sourceRoot": "libs/demo/floating-forms/src",
-      "prefix": "ngx-plugin-modules",
+      "prefix": "lib",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -105,7 +105,7 @@
       "projectType": "library",
       "root": "libs/demo/forms-registry",
       "sourceRoot": "libs/demo/forms-registry/src",
-      "prefix": "ngx-plugin-modules",
+      "prefix": "lib",
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -171,7 +171,7 @@
       "projectType": "application",
       "root": "apps/ngx-plugin-modules-demo",
       "sourceRoot": "apps/ngx-plugin-modules-demo/src",
-      "prefix": "ngx-plugin-modules",
+      "prefix": "app",
       "targets": {
         "build": {
           "executor": "@angular-devkit/build-angular:browser",
@@ -295,12 +295,14 @@
       "style": "scss",
       "linter": "eslint",
       "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
+      "e2eTestRunner": "cypress",
+      "prefix": "app"
     },
     "@nrwl/angular:library": {
       "style": "scss",
       "linter": "eslint",
-      "unitTestRunner": "jest"
+      "unitTestRunner": "jest",
+      "prefix": "lib"
     },
     "@nrwl/angular:component": {
       "style": "scss"

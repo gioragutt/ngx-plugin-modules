@@ -1,4 +1,4 @@
-import { CanLoad, PluginProcessor } from '../interfaces';
+import {CanLoad, PluginProcessor} from '../interfaces';
 
 export function isFunction<T>(v: unknown): v is T {
   return typeof v === 'function';

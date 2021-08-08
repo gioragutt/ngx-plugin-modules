@@ -1,9 +1,9 @@
-import { Injector } from '@angular/core';
-import { concat, MonoTypeOperatorFunction, Observable, of } from 'rxjs';
-import { concatMap, defaultIfEmpty, filter, first, mapTo, skipWhile } from 'rxjs/operators';
-import { LazyPluginModule } from './interfaces';
-import { wrapIntoObservable } from './utils/collections';
-import { isCanLoad, isFunction } from './utils/type_guard';
+import {Injector} from '@angular/core';
+import {concat, MonoTypeOperatorFunction, Observable, of} from 'rxjs';
+import {concatMap, defaultIfEmpty, filter, first, mapTo, skipWhile} from 'rxjs/operators';
+import {LazyPluginModule} from './interfaces';
+import {wrapIntoObservable} from './utils/collections';
+import {isCanLoad, isFunction} from './utils/type_guard';
 
 export function checkGuards(injector: Injector): MonoTypeOperatorFunction<LazyPluginModule> {
   return (source: Observable<LazyPluginModule>) => {
@@ -13,7 +13,8 @@ export function checkGuards(injector: Injector): MonoTypeOperatorFunction<LazyPl
           first(),
           filter(result => !!result),
           mapTo(lazyModule),
-        )),
+        ),
+      ),
     );
   };
 }
@@ -22,9 +23,7 @@ function runCanActive(injector: Injector, lazyModule: LazyPluginModule): Observa
   if (!lazyModule.canLoad) {
     return of(true);
   }
-  const canLoadGuards = lazyModule.canLoad
-    .map(token => injector.get(token, null))
-    .filter(g => !!g);
+  const canLoadGuards = lazyModule.canLoad.map(token => injector.get(token, null)).filter(g => !!g);
 
   const canLoadObservables = canLoadGuards.map(g => {
     if (isCanLoad(g)) {
