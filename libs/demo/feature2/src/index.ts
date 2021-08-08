@@ -1,1 +1,1 @@
-export * from './lib/demo-feature2.module';
+export * from './lib/feature2.module';

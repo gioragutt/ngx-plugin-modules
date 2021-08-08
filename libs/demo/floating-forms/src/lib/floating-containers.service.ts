@@ -107,7 +107,10 @@ export class FloatingContainersService {
     }
   }
 
-  private moveToNewContainer(splitFrom: FloatingContainerRef, formFromView: FormEntryViewRef<any>) {
+  private moveToNewContainer(
+    splitFrom: FloatingContainerRef,
+    formFromView: FormEntryViewRef<unknown>,
+  ) {
     const attachingTo = this.createFloatingContainer();
     this.logger.debug(`Splitting from ${splitFrom.instance.id} to new(${attachingTo.instance.id})`);
     attachingTo.instance.attach(formFromView);
