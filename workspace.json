@@ -1,7 +1,61 @@
 {
   "version": 2,
-  "projects": {},
+  "projects": {
+    "ngx-plugin-modules": {
+      "projectType": "library",
+      "root": "libs/ngx-plugin-modules",
+      "sourceRoot": "libs/ngx-plugin-modules/src",
+      "prefix": "ngx-plugin-modules",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/angular:package",
+          "outputs": ["dist/libs/ngx-plugin-modules"],
+          "options": {
+            "project": "libs/ngx-plugin-modules/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/ngx-plugin-modules/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/ngx-plugin-modules/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ngx-plugin-modules"],
+          "options": {
+            "jestConfig": "libs/ngx-plugin-modules/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ngx-plugin-modules/src/**/*.ts",
+              "libs/ngx-plugin-modules/src/**/*.html"
+            ]
+          }
+        }
+      }
+    }
+  },
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
-  }
+    "defaultCollection": "@nrwl/angular"
+  },
+  "generators": {
+    "@nrwl/angular:application": {
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:library": {
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {}
+  },
+  "defaultProject": "ngx-plugin-modules"
 }
