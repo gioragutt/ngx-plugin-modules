@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+  <mat-menu #categoriesMenu="matMenu">
+    <ng-container *ngFor="let item of formEntries$ | async | keyvalue">
+      <button mat-menu-item [matMenuTriggerFor]="specificCategoryMenu">{{item.key}}</button>
+      <mat-menu #specificCategoryMenu="matMenu">
+        <button mat-menu-item *ngFor="let entry of item.value" (click)="formClick.emit(entry)">
+          {{entry.name}}
+        </button>
+      </mat-menu>
+    </ng-container>
+  </mat-menu>
+
+  <button mat-icon-button [matMenuTriggerFor]="categoriesMenu" #trigger="matMenuTrigger"
+    (mouseenter)="trigger.openMenu()">
+    <mat-icon>tab</mat-icon>
+  </button>
+  <span data-test-id="title">Ngx Plugin Modules Demo</span>
+  <span style="flex: 1"></span>
+  <button mat-icon-button (click)="openSettings()" color="accent">
+    <mat-icon>settings</mat-icon>
+  </button>
+  <button mat-button (click)="loadLazyModules()" color="accent">
+    <mat-icon>{{loaded ? 'cloud_done' : 'cloud_download'}}</mat-icon>
+    <span *ngIf="!loaded" style="margin-left: 10px;">{{loading ? 'Loading...' : 'Load more modules!'}}</span>
+  </button>
+</mat-toolbar>
+
+<div class="full-page page-drag-boundary" libFloatingFormsBoundary></div>

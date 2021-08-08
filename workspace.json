@@ -333,5 +333,5 @@
       "style": "scss"
     }
   },
-  "defaultProject": "ngx-plugin-modules"
+  "defaultProject": "ngx-plugin-modules-demo"
 }
