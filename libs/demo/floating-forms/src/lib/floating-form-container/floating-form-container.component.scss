@@ -1,0 +1,36 @@
+.focused {
+  box-shadow: 0px 0px 7px 1px rgba(0, 200, 255);
+  outline: none;
+  z-index: 100;
+}
+
+.floating-form-container {
+  box-sizing: border-box;
+  min-width: 300px;
+  width: 400px;
+  min-height: 500px;
+  max-height: 800px;
+  position: absolute;
+
+  border-radius: 16px;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+
+  .tab-content {
+    flex: 1;
+  }
+
+  .split-button {
+    margin-left: 5px;
+  }
+
+  .actions {
+    margin-bottom: 10px;
+  }
+}
+
+.tabs {
+  /* To extend drag handle to the sides */
+  margin: 0 -15px;
+}

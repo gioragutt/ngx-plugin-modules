@@ -1,0 +1,26 @@
+<mat-card cdkDrag class="floating-form-container" cdkDragBoundry=".page-drag-boundry" (focus)="gainFocus.emit()"
+  [class.focused]="focused" tabindex="-1">
+  <mat-tab-group [(selectedIndex)]="selected" class="tabs"
+    animationDuration="0ms" cdkDragHandle>
+    <mat-tab *ngFor="let tab of componentTabs; let i=index">
+      <ng-template mat-tab-label>
+        <span>{{tab.formEntry.name}}</span>
+        <button mat-icon-button *ngIf="(openFloatingFormContainers$ | async) > 1 || componentTabs.length > 1"
+          class="split-button" (click)="split(i)">
+          <mat-icon>keyboard_tab</mat-icon>
+        </button>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+  <div *ngFor="let tab of componentTabs; let index=index" [hidden]="selected !== index" class="tab-content">
+    <ng-template [libFormRegistryComponent]="tab"></ng-template>
+  </div>
+  <div class="actions">
+    <mat-divider></mat-divider>
+    <mat-action-list>
+      <button mat-button (click)="closeCurrentTab()">
+        Close
+      </button>
+    </mat-action-list>
+  </div>
+</mat-card>
