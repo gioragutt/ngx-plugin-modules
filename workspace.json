@@ -126,6 +126,31 @@
         }
       }
     },
+    "demo-material": {
+      "projectType": "library",
+      "root": "libs/demo/material",
+      "sourceRoot": "libs/demo/material/src",
+      "prefix": "lib",
+      "targets": {
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/demo/material"],
+          "options": {
+            "jestConfig": "libs/demo/material/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/demo/material/src/**/*.ts",
+              "libs/demo/material/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "ngx-plugin-modules": {
       "projectType": "library",
       "root": "libs/ngx-plugin-modules",

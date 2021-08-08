@@ -42,6 +42,9 @@
     "demo-forms-registry": {
       "tags": []
     },
+    "demo-material": {
+      "tags": []
+    },
     "ngx-plugin-modules": {
       "tags": []
     },

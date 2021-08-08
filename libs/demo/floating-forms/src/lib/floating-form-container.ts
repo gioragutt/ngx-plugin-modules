@@ -1,5 +1,5 @@
-import { Observable } from 'rxjs';
-import { FormEntry, FormEntryViewRef } from 'projects/forms-registry';
+import {Observable} from 'rxjs';
+import {FormEntry, FormEntryViewRef} from '@ngx-plugin-modules/demo/forms-registry';
 
 export interface TabSplitEvent {
   formFromView: FormEntryViewRef;
