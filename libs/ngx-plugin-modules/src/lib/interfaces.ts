@@ -5,7 +5,7 @@ import {MaybeAsync} from './utils/collections';
 
 export interface PluginModuleConfig {
   lazyLoadImmediately?: boolean;
-  boostrapImmediately?: boolean;
+  bootstrapImmediately?: boolean;
 }
 
 export interface LazyPluginModule {

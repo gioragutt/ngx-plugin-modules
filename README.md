@@ -73,10 +73,7 @@ The library exposes the `FormsRegistryService` which is the main public API for 
 export class FormsRegistry {
   formEntries$(): Observable<FormEntry[]>;
 
-  add<T = any>(
-    formEntry: FormEntry<T>,
-    componentFactory: ComponentFactory<T>
-  ): void;
+  add<T = any>(formEntry: FormEntry<T>, componentFactory: ComponentFactory<T>): void;
 
   resolveComponentFactory<T>(component: Type<T>): ComponentFactory<T> | null;
 }
@@ -89,13 +86,12 @@ The plugin system registers the `PluginProcessor` via a `forRoot` import:
   imports: [
     PluginsModule.forRoot([
       {
-        loadChildren: () =>
-          import("./feature1/feature1.module").then(m => m.Feature1Module),
-        name: "feature1" // name provided for diagnostics
-      }
+        loadChildren: () => import('./feature1/feature1.module').then(m => m.Feature1Module),
+        name: 'feature1', // name provided for diagnostics
+      },
     ]),
-    FormsRegistryModule.forRoot()
-  ]
+    FormsRegistryModule.forRoot(),
+  ],
 })
 export class AppModule {}
 ```
@@ -109,12 +105,12 @@ Feature Modules expose forms to the registry via a `forFeature` import:
     CommonModule,
     FormsRegistryModule.forFeature([
       {
-        category: "Category 1",
+        category: 'Category 1',
         component: Feature1FormComponent,
-        name: "Feature1FormComponent"
-      }
+        name: 'Feature1FormComponent',
+      },
     ]), // expose api
-    PluginsModule.forFeature() // register as module that exposes api via plugins
+    PluginsModule.forFeature(), // register as module that exposes api via plugins
   ],
 })
 export class Feature1Module {}

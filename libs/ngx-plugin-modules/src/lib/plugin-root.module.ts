@@ -8,7 +8,7 @@ export const PLUGIN_ROOT_MODULE_CONFIG = new InjectionToken<PluginModuleConfig>(
 );
 
 const DEFAULT_CONFIG: PluginModuleConfig = {
-  boostrapImmediately: true,
+  bootstrapImmediately: true,
   lazyLoadImmediately: true,
 };
 
@@ -34,7 +34,7 @@ export class PluginRootModule {
   }
 
   registerFeature(moduleRef: NgModuleRef<any>) {
-    if (this.config.boostrapImmediately) {
+    if (this.config.bootstrapImmediately) {
       this.boostrapper.bootstrap(moduleRef).subscribe();
     } else {
       this.boostrapper.save(moduleRef);
