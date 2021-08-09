@@ -9,7 +9,9 @@
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/demo/feature1"],
+          "outputs": [
+            "coverage/libs/demo/feature1"
+          ],
           "options": {
             "jestConfig": "libs/demo/feature1/jest.config.js",
             "passWithNoTests": true
@@ -34,7 +36,9 @@
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/demo/feature2"],
+          "outputs": [
+            "coverage/libs/demo/feature2"
+          ],
           "options": {
             "jestConfig": "libs/demo/feature2/jest.config.js",
             "passWithNoTests": true
@@ -59,7 +63,9 @@
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/demo/feature3"],
+          "outputs": [
+            "coverage/libs/demo/feature3"
+          ],
           "options": {
             "jestConfig": "libs/demo/feature3/jest.config.js",
             "passWithNoTests": true
@@ -84,7 +90,9 @@
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/demo/floating-forms"],
+          "outputs": [
+            "coverage/libs/demo/floating-forms"
+          ],
           "options": {
             "jestConfig": "libs/demo/floating-forms/jest.config.js",
             "passWithNoTests": true
@@ -109,7 +117,9 @@
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/demo/forms-registry"],
+          "outputs": [
+            "coverage/libs/demo/forms-registry"
+          ],
           "options": {
             "jestConfig": "libs/demo/forms-registry/jest.config.js",
             "passWithNoTests": true
@@ -134,7 +144,9 @@
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/demo/material"],
+          "outputs": [
+            "coverage/libs/demo/material"
+          ],
           "options": {
             "jestConfig": "libs/demo/material/jest.config.js",
             "passWithNoTests": true
@@ -159,7 +171,9 @@
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/demo/search"],
+          "outputs": [
+            "coverage/libs/demo/search"
+          ],
           "options": {
             "jestConfig": "libs/demo/search/jest.config.js",
             "passWithNoTests": true
@@ -168,7 +182,10 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/demo/search/src/**/*.ts", "libs/demo/search/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/demo/search/src/**/*.ts",
+              "libs/demo/search/src/**/*.html"
+            ]
           }
         }
       }
@@ -181,7 +198,9 @@
       "targets": {
         "build": {
           "executor": "@nrwl/angular:package",
-          "outputs": ["dist/libs/ngx-plugin-modules"],
+          "outputs": [
+            "dist/libs/ngx-plugin-modules"
+          ],
           "options": {
             "project": "libs/ngx-plugin-modules/ng-package.json"
           },
@@ -197,7 +216,9 @@
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/ngx-plugin-modules"],
+          "outputs": [
+            "coverage/libs/ngx-plugin-modules"
+          ],
           "options": {
             "jestConfig": "libs/ngx-plugin-modules/jest.config.js",
             "passWithNoTests": true
@@ -222,7 +243,9 @@
       "targets": {
         "build": {
           "executor": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/ngx-plugin-modules-demo",
             "index": "apps/ngx-plugin-modules-demo/src/index.html",
@@ -234,7 +257,9 @@
               "apps/ngx-plugin-modules-demo/src/favicon.ico",
               "apps/ngx-plugin-modules-demo/src/assets"
             ],
-            "styles": ["apps/ngx-plugin-modules-demo/src/styles.scss"],
+            "styles": [
+              "apps/ngx-plugin-modules-demo/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -299,7 +324,9 @@
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/ngx-plugin-modules-demo"],
+          "outputs": [
+            "coverage/apps/ngx-plugin-modules-demo"
+          ],
           "options": {
             "jestConfig": "apps/ngx-plugin-modules-demo/jest.config.js",
             "passWithNoTests": true
@@ -328,7 +355,28 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/ngx-plugin-modules-demo-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/ngx-plugin-modules-demo-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    },
+    "ngx-plugin-modules-docs": {
+      "projectType": "application",
+      "root": "apps/ngx-plugin-modules-docs",
+      "sourceRoot": "apps/ngx-plugin-modules-docs/src",
+      "targets": {
+        "build": {
+          "executor": "@nx-plus/docusaurus:browser",
+          "options": {
+            "outputPath": "dist/apps/ngx-plugin-modules-docs"
+          }
+        },
+        "serve": {
+          "executor": "@nx-plus/docusaurus:dev-server",
+          "options": {
+            "port": 3000
           }
         }
       }

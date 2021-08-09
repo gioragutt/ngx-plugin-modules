@@ -57,6 +57,9 @@
     "ngx-plugin-modules-demo-e2e": {
       "tags": [],
       "implicitDependencies": ["ngx-plugin-modules-demo"]
+    },
+    "ngx-plugin-modules-docs": {
+      "tags": []
     }
   }
 }
