@@ -1,7 +1,7 @@
 module.exports = {
-  title: 'ngx-plugin-modules Docs',
-  tagline: 'The tagline of my site',
-  url: 'https://ngx-plugin-modules.netlify.com',
+  title: 'ngx-plugin-modules',
+  tagline: 'Build your perfect Plugin-Based architecture in Angular 🚀',
+  url: 'https://ngx-plugin-modules.netlify.app',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -24,6 +24,11 @@ module.exports = {
         },
         {to: 'blog', label: 'Blog', position: 'left'},
         {
+          href: 'https://ngx-plugin-modules-demo.netlify.app',
+          label: 'Demo',
+          position: 'right',
+        },
+        {
           href: 'https://github.com/gioragutt/ngx-plugin-modules',
           label: 'GitHub',
           position: 'right',
@@ -39,6 +44,19 @@ module.exports = {
             {
               label: 'Style Guide',
               to: 'docs/',
+            },
+            {
+              label: 'Second Doc',
+              to: 'docs/doc2/',
+            },
+          ],
+        },
+        {
+          title: 'Links',
+          items: [
+            {
+              label: 'Demo',
+              to: 'https://ngx-plugin-modules-demo.netlify.app',
             },
             {
               label: 'Second Doc',
