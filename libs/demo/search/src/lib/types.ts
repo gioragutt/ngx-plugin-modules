@@ -1,8 +1,8 @@
-import {Type} from '@angular/core';
-import {Observable} from 'rxjs';
+import {Injector, Type} from '@angular/core';
+import {MaybeAsync} from 'ngx-plugin-modules';
 
 export interface SearchResult {
-  data: unknown;
+  injector: Injector;
   component: Type<unknown>;
   onClick(): void;
 }
@@ -15,5 +15,5 @@ export interface SearchSourceProvider {
     icon: string;
   };
 
-  search(term: string): Observable<SearchResult[]>;
+  search(term: string): MaybeAsync<SearchResult[]>;
 }

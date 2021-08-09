@@ -5,7 +5,7 @@ function flatten<T>(arr: T[][]): T[] {
 }
 
 export function getFlattened<T>(injector: Injector, token: InjectionToken<T[][]>): T[] | null {
-  const all = injector.get(token);
+  const all = injector.get(token, null);
 
   if (!all) {
     return null;

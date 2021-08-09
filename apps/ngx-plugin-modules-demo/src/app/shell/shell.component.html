@@ -19,7 +19,13 @@
     <mat-icon>tab</mat-icon>
   </button>
   <span data-test-id="title">Ngx Plugin Modules Demo</span>
+
   <span style="flex: 1"></span>
+
+  <app-search-bar></app-search-bar>
+
+  <span style="flex: 1"></span>
+
   <button mat-button (click)="loadLazyModules()" color="accent">
     <mat-icon>{{ loaded ? 'cloud_done' : 'cloud_download' }}</mat-icon>
     <span *ngIf="!loaded" style="margin-left: 10px">{{

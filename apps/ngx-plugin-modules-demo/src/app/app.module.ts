@@ -8,6 +8,12 @@ import {MaterialModule} from '@ngx-plugin-modules/demo/material';
 import {LazyPluginModules, PluginsModule} from 'ngx-plugin-modules';
 import {AppComponent} from './app.component';
 import {ShellComponent} from './shell/shell.component';
+import {
+  SearchBarComponent,
+  SearchResult2Component,
+  SearchResultComponent,
+} from './search-bar/search-bar.component';
+import {SearchModule} from '@ngx-plugin-modules/demo/search';
 
 export const features: LazyPluginModules = [
   {
@@ -21,13 +27,20 @@ export const features: LazyPluginModules = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ShellComponent],
+  declarations: [
+    AppComponent,
+    ShellComponent,
+    SearchBarComponent,
+    SearchResultComponent,
+    SearchResult2Component,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsRegistryModule.forRoot(),
     FloatingFormsModule.forRoot(),
     PluginsModule.forRoot(features, {lazyLoadImmediately: false}),
+    SearchModule.forRoot(),
     MaterialModule,
     Feature3Module,
   ],

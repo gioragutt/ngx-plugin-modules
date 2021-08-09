@@ -1,0 +1,42 @@
+<form class="example-form">
+  <mat-form-field appearance="standard">
+    <mat-icon matPrefix style="margin-right: 8x;">search</mat-icon>
+
+    <input
+      type="text"
+      aria-label="Number"
+      matInput
+      [formControl]="searchTermControl"
+      [matAutocomplete]="searchResults"
+    />
+
+
+    <mat-menu #searchProvidersMenu="matMenu">
+      <button
+        mat-menu-item
+        *ngFor="let provider of providers | async"
+        (click)="changeProvider(provider.id)"
+      >
+        <mat-icon>{{ provider.searchBarSettings.icon }}</mat-icon>
+        <span>
+          {{ provider.searchBarSettings.title }}
+        </span>
+      </button>
+    </mat-menu>
+
+    <mat-autocomplete #searchResults="matAutocomplete">
+      <mat-option *ngFor="let option of results | async" (click)="option.onClick()">
+        <ng-content *ngComponentOutlet="option.component; injector: option.injector"></ng-content>
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <button
+    mat-icon-button
+    [matMenuTriggerFor]="searchProvidersMenu"
+    type="button"
+    *ngIf="activeProvider | async as provider"
+  >
+    <mat-icon>{{ provider.searchBarSettings.icon }}</mat-icon>
+  </button>
+</form>
