@@ -1,6 +1,4 @@
-import {InjectionToken} from '@angular/core';
-import {SearchSourceProvider} from './types';
+import {InjectionToken, Type} from '@angular/core';
+import {SearchProvider} from './types';
 
-export const SEARCH_SOURCE_PROVIDERS = new InjectionToken<SearchSourceProvider[][]>(
-  'SearchSourceProviders',
-);
+export const SEARCH_PROVIDERS = new InjectionToken<Type<SearchProvider>[][]>('SearchProviders');

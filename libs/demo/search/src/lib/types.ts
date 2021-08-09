@@ -7,7 +7,7 @@ export interface SearchResult {
   onClick(): void;
 }
 
-export interface SearchSourceProvider {
+export interface SearchProvider {
   readonly id: string;
 
   readonly searchBarSettings: {

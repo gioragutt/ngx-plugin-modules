@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, combineLatest} from 'rxjs';
 import {distinctUntilChanged, map} from 'rxjs/operators';
-import {SearchSourceProvider} from './types';
+import {SearchProvider} from './types';
 
 @Injectable()
 export class SearchService {
-  private readonly providers = new BehaviorSubject<SearchSourceProvider[]>([]);
+  private readonly providers = new BehaviorSubject<SearchProvider[]>([]);
   private readonly activeProviderId = new BehaviorSubject<string>('');
 
   readonly providers$ = this.providers.asObservable();
@@ -22,11 +22,12 @@ export class SearchService {
     this.activeProviderId.next(id);
   }
 
-  registerProvider(provider: SearchSourceProvider) {
+  registerProvider(provider: SearchProvider) {
     if (this.providers.value.find(p => p.id === provider.id)) {
       throw new Error(`provider "${provider.id}" already registered`);
     }
 
     this.providers.next([...this.providers.value, provider]);
+    console.log('new providers', this.providers.value);
   }
 }
