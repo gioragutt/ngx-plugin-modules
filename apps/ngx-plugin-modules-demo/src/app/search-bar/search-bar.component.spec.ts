@@ -1,4 +1,5 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {SearchService} from '@ngx-plugin-modules/demo/search';
 
 import {SearchBarComponent} from './search-bar.component';
 
@@ -8,7 +9,7 @@ describe('SearchBarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SearchBarComponent],
+      declarations: [SearchBarComponent, SearchService],
     }).compileComponents();
   });
 
