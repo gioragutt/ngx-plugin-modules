@@ -7,7 +7,7 @@ slug: /
 
 # Introduction
 
-`ngx-plugin-modules` is an [Angular](angular.io) library, with the purpose of allowing to create architectures using the concept of plugins.
+`ngx-plugin-modules` is an [Angular](https://angular.io) library, with the purpose of allowing to create architectures using the concept of plugins.
 
 ## Inspiration
 

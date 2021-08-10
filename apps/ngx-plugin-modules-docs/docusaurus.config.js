@@ -43,11 +43,7 @@ module.exports = {
           items: [
             {
               label: 'Style Guide',
-              to: 'docs/',
-            },
-            {
-              label: 'Second Doc',
-              to: 'docs/doc2/',
+              to: 'docs/styleguide',
             },
           ],
         },
@@ -57,10 +53,6 @@ module.exports = {
             {
               label: 'Demo',
               to: 'https://ngx-plugin-modules-demo.netlify.app',
-            },
-            {
-              label: 'Second Doc',
-              to: 'docs/doc2/',
             },
           ],
         },
