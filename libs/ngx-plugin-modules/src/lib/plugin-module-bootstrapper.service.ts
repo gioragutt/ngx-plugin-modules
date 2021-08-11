@@ -7,7 +7,7 @@ import {mergeMap} from 'rxjs/operators';
   providedIn: 'root',
 })
 export class PluginModuleBootstrapperService {
-  private savedModules: NgModuleRef<any>[] = [];
+  private savedModules: NgModuleRef<unknown>[] = [];
 
   constructor(private processors: PluginProcessorsService) {}
 
@@ -15,14 +15,14 @@ export class PluginModuleBootstrapperService {
     const modules = this.savedModules;
     this.savedModules = [];
 
-    return from(modules).pipe(mergeMap((module: NgModuleRef<any>) => this.bootstrap(module)));
+    return from(modules).pipe(mergeMap((module: NgModuleRef<unknown>) => this.bootstrap(module)));
   }
 
-  bootstrap(module: NgModuleRef<any>): Observable<void> {
+  bootstrap(module: NgModuleRef<unknown>): Observable<void> {
     return this.processors.process(module);
   }
 
-  save(module: NgModuleRef<any>): void {
+  save(module: NgModuleRef<unknown>): void {
     this.savedModules.push(module);
   }
 }

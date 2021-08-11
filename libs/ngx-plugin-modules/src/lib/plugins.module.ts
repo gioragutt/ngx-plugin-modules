@@ -6,7 +6,7 @@ import {PluginRootModule, PLUGIN_ROOT_MODULE_CONFIG} from './plugin-root.module'
 
 @NgModule()
 export class PluginsModule {
-  static forFeature(): Type<any> {
+  static forFeature(): Type<PluginFeatureModule> {
     return PluginFeatureModule;
   }
 

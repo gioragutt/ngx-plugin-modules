@@ -1,4 +1,6 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {MaterialModule} from '@ngx-plugin-modules/demo/material';
 import {SearchService} from '@ngx-plugin-modules/demo/search';
 
 import {SearchBarComponent} from './search-bar.component';
@@ -9,7 +11,9 @@ describe('SearchBarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SearchBarComponent, SearchService],
+      imports: [MaterialModule, NoopAnimationsModule],
+      declarations: [SearchBarComponent],
+      providers: [SearchService],
     }).compileComponents();
   });
 

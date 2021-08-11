@@ -35,7 +35,7 @@ export class PluginModuleLoaderService {
 
   private loadLazyPluginModule(lazyModule: LazyPluginModule): Observable<LoadedLazyPluginModule> {
     return this.loadModuleFactory(lazyModule).pipe(
-      map((factory: NgModuleFactory<any>) => {
+      map((factory: NgModuleFactory<unknown>) => {
         const module = factory.create(this.injector);
         return new LoadedLazyPluginModule(lazyModule, module);
       }),

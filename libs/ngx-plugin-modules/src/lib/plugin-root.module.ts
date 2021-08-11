@@ -18,7 +18,7 @@ export class PluginRootModule {
 
   constructor(
     @Optional() @Inject(PLUGIN_ROOT_MODULE_CONFIG) config: PluginModuleConfig,
-    private boostrapper: PluginModuleBootstrapperService,
+    private bootstrapper: PluginModuleBootstrapperService,
     private loader: PluginModuleLoaderService,
   ) {
     config = config || {};
@@ -33,11 +33,11 @@ export class PluginRootModule {
     }
   }
 
-  registerFeature(moduleRef: NgModuleRef<any>) {
+  registerFeature(moduleRef: NgModuleRef<unknown>) {
     if (this.config.bootstrapImmediately) {
-      this.boostrapper.bootstrap(moduleRef).subscribe();
+      this.bootstrapper.bootstrap(moduleRef).subscribe();
     } else {
-      this.boostrapper.save(moduleRef);
+      this.bootstrapper.save(moduleRef);
     }
   }
 }
