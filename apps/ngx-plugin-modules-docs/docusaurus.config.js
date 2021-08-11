@@ -1,13 +1,21 @@
+const libraryName = 'ngx-plugin-modules';
+const organizationName = 'gioragutt';
+
+const docsUrl = `https://${libraryName}.netlify.app`;
+const repoUrl = `https://github.com/${organizationName}/${libraryName}`;
+const editUrl = `${repoUrl}/edit/main/apps/${libraryName}-docs/`;
+const demoUrl = `https://${libraryName}-demo.netlify.app`;
+
 module.exports = {
-  title: 'ngx-plugin-modules',
+  title: libraryName,
   tagline: 'Build your perfect Plugin-Based architecture in Angular 🚀',
-  url: 'https://ngx-plugin-modules.netlify.app',
+  url: docsUrl,
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'gioragutt', // Usually your GitHub org/user name.
-  projectName: 'ngx-plugin-modules', // Usually your repo name.
+  organizationName,
+  projectName: libraryName,
   themeConfig: {
     navbar: {
       title: 'Ngx Plugin Modules',
@@ -22,14 +30,18 @@ module.exports = {
           label: 'Docs',
           position: 'left',
         },
-        {to: 'blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://ngx-plugin-modules-demo.netlify.app',
+          to: 'blog',
+          label: 'Blog',
+          position: 'left',
+        },
+        {
+          href: docsUrl,
           label: 'Demo',
           position: 'right',
         },
         {
-          href: 'https://github.com/gioragutt/ngx-plugin-modules',
+          href: repoUrl,
           label: 'GitHub',
           position: 'right',
         },
@@ -52,7 +64,7 @@ module.exports = {
           items: [
             {
               label: 'Demo',
-              to: 'https://ngx-plugin-modules-demo.netlify.app',
+              to: demoUrl,
             },
           ],
         },
@@ -65,7 +77,7 @@ module.exports = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/gioragutt/ngx-plugin-modules',
+              href: repoUrl,
             },
           ],
         },
@@ -77,19 +89,9 @@ module.exports = {
     [
       '@docusaurus/preset-classic',
       {
-        docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
-          editUrl:
-            'https://github.com/gioragutt/ngx-plugin-modules/edit/main/apps/ngx-plugin-modules-docs/docs/',
-        },
-        blog: {
-          showReadingTime: true,
-          editUrl:
-            'https://github.com/gioragutt/ngx-plugin-modules/edit/main/apps/ngx-plugin-modules-docs/blog/',
-        },
-        theme: {
-          customCss: require.resolve('./src/css/custom.css'),
-        },
+        docs: {editUrl, sidebarPath: require.resolve('./sidebars.js')},
+        blog: {editUrl, showReadingTime: true},
+        theme: {customCss: require.resolve('./src/css/custom.css')},
       },
     ],
   ],
