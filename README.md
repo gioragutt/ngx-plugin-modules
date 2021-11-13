@@ -2,7 +2,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/5ae923cb-3ac2-4c31-9c63-9e5274135f10/deploy-status)](https://app.netlify.com/sites/ngx-plugin-modules/deploys)
 
-Docs: ngx-plugin-modules.netlify.app
+Docs: https://ngx-plugin-modules.netlify.app/
 
 ## TODO - REWRITE README
 
