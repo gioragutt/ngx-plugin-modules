@@ -36,7 +36,7 @@ module.exports = {
           position: 'left',
         },
         {
-          href: docsUrl,
+          href: demoUrl,
           label: 'Demo',
           position: 'right',
         },
